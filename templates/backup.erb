@@ -1,0 +1,21 @@
+#!/bin/bash
+# File managed by Puppet
+
+export PASSPHRASE='<%=gpg_passphrase%>'
+
+duplicity --full-if-older-than <%=full%> \
+  --verbosity 0 <%=args%> \
+  --include-globbing-filelist /usr/local/duplicity/<%=name%>.include \
+  --exclude-globbing-filelist /usr/local/duplicity/<%=name%>.exclude \
+  <%=source%> <%=destination%> > <%= scope.lookupvar("duplicity::params::logdir") %>/<%=name%>-$(date +%F).log
+
+duplicity remove-older-than <%=retention%> \
+  --log-file <%= scope.lookupvar("duplicity::params::logdir") %>/<%=name%>-cleanup-$(date +%F).log \
+  --verbosity 0 \
+  --force <%=destination%>
+unset PASSPHRASE
+
+duplicity cleanup --force --extra-clean \
+  --log-file <%= scope.lookupvar("duplicity::params::logdir") %>/<%=name%>-cleanup-$(date +%F).log \
+  --verbosity 0 \
+  <%=args%> <%=destination%>
