@@ -1,7 +1,7 @@
 #!/bin/bash
 # File managed by Puppet
 
-export PASSPHRASE='<%=gpg_passphrase%>'
+<%= env_var.collect! {|i| "export #{i}\n" } -%>
 
 duplicity --full-if-older-than <%=full%> \
   --verbosity 0 <%=args%> \
@@ -19,3 +19,5 @@ duplicity cleanup --force --extra-clean \
   --log-file <%= scope.lookupvar("duplicity::params::logdir") %>/<%=name%>-cleanup-$(date +%F).log \
   --verbosity 0 \
   <%=args%> <%=destination%>
+
+<%= env_var.collect! {|j| "unset #{j.split()[1].split('=')[0]}\n" } -%>

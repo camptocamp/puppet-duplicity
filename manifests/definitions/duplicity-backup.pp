@@ -1,3 +1,8 @@
+/*
+
+=Definition: duplicity::backup
+
+*/
 define duplicity::backup(
   $ensure=present,
   $destination,
@@ -6,8 +11,8 @@ define duplicity::backup(
   $includes=[],
   $retention='30D',
   $full='15D',
-  $gpg_passphrase='',
   $archive_dir='/root/.cache/duplicity',
+  env_var=[],
   $args='--no-encryption') {
   include duplicity::params
 
