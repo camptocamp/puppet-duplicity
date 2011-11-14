@@ -13,7 +13,6 @@ duplicity remove-older-than <%=retention%> \
   --log-file <%= scope.lookupvar("duplicity::params::logdir") %>/<%=name%>-cleanup-$(date +%F).log \
   --verbosity 0 \
   --force <%=destination%>
-unset PASSPHRASE
 
 duplicity cleanup --force --extra-clean \
   --log-file <%= scope.lookupvar("duplicity::params::logdir") %>/<%=name%>-cleanup-$(date +%F).log \
