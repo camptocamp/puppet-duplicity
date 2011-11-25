@@ -12,7 +12,7 @@ define duplicity::backup(
   $retention='30D',
   $full='15D',
   $archive_dir='/root/.cache/duplicity',
-  env_var=[],
+  $env_var=[],
   $args='--no-encryption') {
   include duplicity::params
 
