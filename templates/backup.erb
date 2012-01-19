@@ -3,18 +3,18 @@
 
 <%= env_var.collect! {|i| "export #{i}\n" } -%>
 
-duplicity --full-if-older-than <%=full%> \
+duplicity --full-if-older-than <%=full%> --name="<%=name%>" \
   --verbosity 0 <%=args%> \
   --include-globbing-filelist /usr/local/duplicity/<%=name%>.include \
   --exclude-globbing-filelist /usr/local/duplicity/<%=name%>.exclude \
   <%=source%> <%=destination%> > <%= scope.lookupvar("duplicity::params::logdir") %>/<%=name%>-$(date +%F).log
 
-duplicity remove-older-than <%=retention%> \
+duplicity remove-older-than <%=retention%> --name="<%=name%>" \
   --log-file <%= scope.lookupvar("duplicity::params::logdir") %>/<%=name%>-cleanup-$(date +%F).log \
   --verbosity 0 \
   --force <%=destination%>
 
-duplicity cleanup --force --extra-clean \
+duplicity cleanup --name="<%=name%>" --force --extra-clean \
   --log-file <%= scope.lookupvar("duplicity::params::logdir") %>/<%=name%>-cleanup-$(date +%F).log \
   --verbosity 0 \
   <%=args%> <%=destination%>
