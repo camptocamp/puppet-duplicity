@@ -5,15 +5,18 @@
 */
 define duplicity::backup(
   $ensure=present,
-  $destination,
   $source='/',
+  $destination,
+  $encrypt_key,
   $excludes=[],
   $includes=[],
   $retention='30D',
   $full='15D',
   $archive_dir='/root/.cache/duplicity',
+  $tempdir='/tmp',
   $env_var=[],
-  $args='--no-encryption') {
+  $options=['--no-encryption']) {
+
   include duplicity::params
 
   file {"/usr/local/duplicity/${name}.sh":
@@ -22,22 +25,6 @@ define duplicity::backup(
     owner   => 'root',
     group   => 'root',
     content => template('duplicity/backup.erb'),
-  }
-
-  file {"/usr/local/duplicity/${name}.include":
-    ensure => $ensure,
-    mode   => 0640,
-    owner  => 'root',
-    group  => 'root',
-    content => template('duplicity/backup.include.erb'),
-  }
-
-  file {"/usr/local/duplicity/${name}.exclude":
-    ensure => $ensure,
-    mode   => 0640,
-    owner  => 'root',
-    group  => 'root',
-    content => template('duplicity/backup.exclude.erb'),
   }
 
 }

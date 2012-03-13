@@ -1,22 +1,32 @@
 #!/bin/bash
-# File managed by Puppet
+# file managed by Puppet
 
 <%= env_var.collect! {|i| "export #{i}\n" } -%>
 
-duplicity --full-if-older-than <%=full%> --name="<%=name%>" \
-  --verbosity 0 <%=args%> \
-  --include-globbing-filelist /usr/local/duplicity/<%=name%>.include \
-  --exclude-globbing-filelist /usr/local/duplicity/<%=name%>.exclude \
+duplicity \
+  --encrypt-key=<%= encrypt_key%> \
+  --name="<%=name%>" \
+  --tempdir="<%=tempdir%>" \
+  --full-if-older-than <%=full%> \
+<%= options.collect!  {|i| "  #{i} \\\n"            } -%>
+<%= excludes.collect! {|i| "  --exclude='#{i}' \\\n"} -%>
+<%= includes.collect! {|i| "  --include='#{i}' \\\n"} -%>
+  --exclude='**' \
   <%=source%> <%=destination%> > <%= scope.lookupvar("duplicity::params::logdir") %>/<%=name%>-$(date +%F).log
 
-duplicity remove-older-than <%=retention%> --name="<%=name%>" \
+duplicity remove-older-than <%=retention%> \
+  --name="<%=name%>" \
+  --tempdir="<%=tempdir%>" \
+<%=options-%>
   --log-file <%= scope.lookupvar("duplicity::params::logdir") %>/<%=name%>-cleanup-$(date +%F).log \
-  --verbosity 0 \
   --force <%=destination%>
 
-duplicity cleanup --name="<%=name%>" --force --extra-clean \
+duplicity cleanup \
+  --name="<%=name%>" \
+  --tempdir="<%=tempdir%>" \
+<%=options-%>
+  --extra-clean \
   --log-file <%= scope.lookupvar("duplicity::params::logdir") %>/<%=name%>-cleanup-$(date +%F).log \
-  --verbosity 0 \
-  <%=args%> <%=destination%>
+  --force <%=destination%>
 
 <%= env_var.collect! {|j| "unset #{j.split()[1].split('=')[0]}\n" } -%>
