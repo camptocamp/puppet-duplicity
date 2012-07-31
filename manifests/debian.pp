@@ -9,22 +9,22 @@ class duplicity::debian {
     ensure => directory,
     owner  => 'root',
     group  => 'adm',
-    mode   => 0750,
+    mode   => '0750',
   }
 
   tidy {$duplicity::params::logdir :
-    age => '1W',
+    age     => '1W',
     recurse => true,
     matches => '*.log',
   }
 
   file {'/usr/local/duplicity/':
-    ensure => directory,
-    owner  => 'root',
-    group  => 'root',
-    mode   => 0750,
-    purge  => true,
-    force  => true,
+    ensure  => directory,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0750',
+    purge   => true,
+    force   => true,
     recurse => true,
     backup  => false,
   }
@@ -33,14 +33,14 @@ class duplicity::debian {
     ensure => present,
     owner  => 'root',
     group  => 'root',
-    mode   => 0750,
+    mode   => '0750',
     source => 'puppet:///modules/duplicity/duplicity-backups.sh',
   }
 
   cron {'duplicity backups':
-    ensure => present,
-    minute => ip_to_cron(1,59),
-    hour   => ip_to_cron(1,5),
+    ensure  => present,
+    minute  => fqdn_rand(60),
+    hour    => fqdn_rand(6),
     command => '/usr/local/duplicity/duplicity-backups.sh',
   }
 }
