@@ -1,6 +1,6 @@
 class duplicity {
-  case $operatingsystem {
+  case $::operatingsystem {
     Debian, Ubuntu: { include duplicity::debian }
-    default: { fail "$operatingsystem not yet implemented for $name" }
+    default: { fail "${::operatingsystem} not yet implemented for $name" }
   }
 }
