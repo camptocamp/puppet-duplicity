@@ -1,1 +1,3 @@
-<%= includes.collect! {|i| "+ #{i}\n" } -%>
+<% includes.each do |i| -%>
++ <%= i %>
+<% end -%>

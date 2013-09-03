@@ -1,2 +1,4 @@
-<%= excludes.collect! {|i| "- #{i}\n" } -%>
+<% excludes.each do |i| -%>
+- <%= i %>
+<% end -%>
 - **

@@ -1,7 +1,9 @@
 #!/bin/bash
 # File managed by Puppet
 
-<%= env_var.collect! {|i| "export #{i}\n" } -%>
+<% env_var.each do |i| -%>
+export <%= i %>
+<% end -%>
 
 duplicity --full-if-older-than <%=full%> --name="<%=name%>" \
   --verbosity 0 <%=args%> \
@@ -19,4 +21,6 @@ duplicity cleanup --name="<%=name%>" --force --extra-clean \
   --verbosity 0 \
   <%=args%> <%=destination%>
 
-<%= env_var.collect! {|j| "unset #{j.split()[1].split('=')[0]}\n" } -%>
+<% env_var.each do |j| -%>
+unset <%= j.split('=')[0] %>
+<% end -%>
