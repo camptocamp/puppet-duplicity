@@ -1,19 +1,16 @@
-/*
-
-=Definition: duplicity::backup
-
-*/
+# =Definition: duplicity::backup
+#
+#
 define duplicity::backup(
   $destination,
-  $ensure=present,
-  $source='/',
-  $excludes=[],
-  $includes=[],
-  $retention='30D',
-  $full='15D',
-  $archive_dir='/root/.cache/duplicity',
-  $env_var=[],
-  $args='--no-encryption') {
+  $ensure      = present,
+  $source      = '/',
+  $rules       = [],
+  $retention   = '30D',
+  $full        = '15D',
+  $archive_dir = '/root/.cache/duplicity',
+  $env_var     = [],
+  $args        = '--no-encryption') {
   include duplicity::params
 
   file {"/usr/local/duplicity/${name}.sh":
