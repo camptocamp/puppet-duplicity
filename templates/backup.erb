@@ -29,6 +29,6 @@ unset <%= j.split('=')[0] %>
 
 else
 
-echo "Run already in progress, skipping..." > <%= scope.lookupvar("duplicity::params::logdir") %>/<%=name%>-$(date +%F).log
+echo "Run already in progress, skipping..." >> <%= scope.lookupvar("duplicity::params::logdir") %>/<%=name%>-$(date +%F).log
 
 fi
