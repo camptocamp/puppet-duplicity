@@ -5,7 +5,7 @@ define duplicity::backup(
   $destination,
   $ensure      = present,
   $source      = '/',
-  $directories = [],
+  $rules       = [],
   $retention   = '30D',
   $full        = '15D',
   $archive_dir = '/root/.cache/duplicity',
