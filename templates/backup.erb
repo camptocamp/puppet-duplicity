@@ -1,6 +1,8 @@
 #!/bin/bash
 # File managed by Puppet
 
+if [[ ! $(ps aux|grep -E "/usr/bin/duplicity\s+.*--name=<%= @name %>.*") ]]; then
+
 <% env_var.each do |i| -%>
 export <%= i %>
 <% end -%>
@@ -24,3 +26,9 @@ duplicity cleanup --name="<%=name%>" --force --extra-clean \
 <% env_var.each do |j| -%>
 unset <%= j.split('=')[0] %>
 <% end -%>
+
+else
+
+echo "Run already in progress, skipping..." > <%= scope.lookupvar("duplicity::params::logdir") %>/<%=name%>-$(date +%F).log
+
+fi
