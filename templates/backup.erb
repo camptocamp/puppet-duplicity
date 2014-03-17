@@ -3,32 +3,32 @@
 
 if [[ ! $(ps aux|grep -E "/usr/bin/duplicity\s+.*--name=<%= @name %>.*") ]]; then
 
-<% env_var.each do |i| -%>
+<% @env_var.each do |i| -%>
 export <%= i %>
 <% end -%>
 
-duplicity --full-if-older-than <%=full%> --name="<%=name%>" \
-  --verbosity 0 <%=args%> \
-  --include-globbing-filelist /usr/local/duplicity/<%=name%>.include \
-  --exclude-globbing-filelist /usr/local/duplicity/<%=name%>.exclude \
-  <%=source%> <%=destination%> > <%= scope.lookupvar("duplicity::params::logdir") %>/<%=name%>-$(date +%F).log
+duplicity --full-if-older-than <%= @full %> --name="<%= @name %>" \
+  --verbosity 0 <%= @args %> \
+  --include-globbing-filelist /usr/local/duplicity/<%= @name %>.include \
+  --exclude-globbing-filelist /usr/local/duplicity/<%= @name %>.exclude \
+  <%= @source %> <%= @destination %> > <%= scope.lookupvar("duplicity::params::logdir") %>/<%= @name %>-$(date +%F).log
 
-duplicity remove-older-than <%=retention%> --name="<%=name%>" \
-  --log-file <%= scope.lookupvar("duplicity::params::logdir") %>/<%=name%>-cleanup-$(date +%F).log \
+duplicity remove-older-than <%= @retention %> --name="<%= @name %>" \
+  --log-file <%= scope.lookupvar("duplicity::params::logdir") %>/<%= @name %>-cleanup-$(date +%F).log \
   --verbosity 0 \
-  --force <%=destination%>
+  --force <%= @destination %>
 
-duplicity cleanup --name="<%=name%>" --force --extra-clean \
-  --log-file <%= scope.lookupvar("duplicity::params::logdir") %>/<%=name%>-cleanup-$(date +%F).log \
+duplicity cleanup --name="<%= @name %>" --force --extra-clean \
+  --log-file <%= scope.lookupvar("duplicity::params::logdir") %>/<%= @name %>-cleanup-$(date +%F).log \
   --verbosity 0 \
-  <%=args%> <%=destination%>
+  <%= @args %> <%= @destination %>
 
-<% env_var.each do |j| -%>
+<% @env_var.each do |j| -%>
 unset <%= j.split('=')[0] %>
 <% end -%>
 
 else
 
-echo "Run already in progress, skipping..." >> <%= scope.lookupvar("duplicity::params::logdir") %>/<%=name%>-$(date +%F).log
+echo "Run already in progress, skipping..." >> <%= scope.lookupvar("duplicity::params::logdir") %>/<%= @name %>-$(date +%F).log
 
 fi
