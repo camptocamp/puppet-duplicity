@@ -1,18 +1,17 @@
 class duplicity::debian {
-  include duplicity::params
 
   package {'duplicity':
     ensure => present,
   }
 
-  file {$duplicity::params::logdir :
+  file {$duplicity::logdir :
     ensure => directory,
     owner  => 'root',
     group  => 'adm',
     mode   => '0750',
   }
 
-  tidy {$duplicity::params::logdir :
+  tidy {$duplicity::logdir :
     age     => '1W',
     recurse => true,
     matches => '*.log',

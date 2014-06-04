@@ -11,7 +11,6 @@ define duplicity::backup(
   $archive_dir = '/root/.cache/duplicity',
   $env_var     = [],
   $args        = '--no-encryption') {
-  include duplicity::params
 
   file {"/usr/local/duplicity/${name}.sh":
     ensure  => $ensure,

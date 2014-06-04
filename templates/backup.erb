@@ -11,15 +11,15 @@ duplicity --full-if-older-than <%= @full %> --name="<%= @name %>" \
   --verbosity 0 <%= @args %> --archive-dir <%= @archive_dir %> \
   --include-globbing-filelist /usr/local/duplicity/<%= @name %>.include \
   --exclude-globbing-filelist /usr/local/duplicity/<%= @name %>.exclude \
-  <%= @source %> <%= @destination %> > <%= scope.lookupvar("duplicity::params::logdir") %>/<%= @name %>-$(date +%F).log 2>&1
+  <%= @source %> <%= @destination %> > <%= scope.lookupvar("duplicity::logdir") %>/<%= @name %>-$(date +%F).log 2>&1
 
 duplicity remove-older-than <%= @retention %> --name="<%= @name %>" \
-  --log-file <%= scope.lookupvar("duplicity::params::logdir") %>/<%= @name %>-cleanup-$(date +%F).log \
+  --log-file <%= scope.lookupvar("duplicity::logdir") %>/<%= @name %>-cleanup-$(date +%F).log \
   --verbosity 0 --archive-dir <%= @archive_dir %> \
   --force <%= @destination %>
 
 duplicity cleanup --name="<%= @name %>" --force --extra-clean \
-  --log-file <%= scope.lookupvar("duplicity::params::logdir") %>/<%= @name %>-cleanup-$(date +%F).log \
+  --log-file <%= scope.lookupvar("duplicity::logdir") %>/<%= @name %>-cleanup-$(date +%F).log \
   --verbosity 0 --archive-dir <%= @archive_dir %> \
   <%= @args %> <%= @destination %>
 
@@ -29,6 +29,6 @@ unset <%= j.split('=')[0] %>
 
 else
 
-echo "Run already in progress, skipping..." >> <%= scope.lookupvar("duplicity::params::logdir") %>/<%= @name %>-$(date +%F).log 2>&1
+echo "Run already in progress, skipping..." >> <%= scope.lookupvar("duplicity::logdir") %>/<%= @name %>-$(date +%F).log 2>&1
 
 fi

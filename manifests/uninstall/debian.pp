@@ -11,7 +11,7 @@ class duplicity::uninstall::debian {
     backup  => false,
   }
 
-  file {$duplicity::params::logdir :
+  file {$duplicity::logdir :
     ensure  => absent,
     purge   => true,
     force   => true,
