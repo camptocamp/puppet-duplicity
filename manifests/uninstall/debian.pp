@@ -1,3 +1,4 @@
+# See README.md for details.
 class duplicity::uninstall::debian {
   package {'duplicity':
     ensure => purged,

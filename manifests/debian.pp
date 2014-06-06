@@ -1,3 +1,4 @@
+# See README.md for details.
 class duplicity::debian {
 
   package {'duplicity':
