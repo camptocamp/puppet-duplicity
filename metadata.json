@@ -1,0 +1,29 @@
+{
+  "name": "camptocamp-duplicity",
+  "version": "1.0.0",
+  "author": "Camptocamp",
+  "summary": "Puppet duplicity module",
+  "license": "Apache-2.0",
+  "source": "https://github.com/camptocamp/puppet-duplicity",
+  "project_page": "https://github.com/camptocamp/puppet-duplicity",
+  "issues_url": "https://github.com/camptocamp/puppet-duplicity/issues",
+  "dependencies": [
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": "3.x"
+    }
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "7"
+      ]
+    }
+  ],
+  "puppet_version": [
+    "3.7"
+  ]
+}
