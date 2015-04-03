@@ -1,7 +1,7 @@
 # See README.md for details.
 class duplicity::uninstall {
   case $::operatingsystem {
-    Debian, Ubuntu: { include duplicity::uninstall::debian }
+    'Debian', 'Ubuntu': { include ::duplicity::uninstall::debian }
     default: { fail "${::operatingsystem} not yet implemented for ${name}" }
   }
 }

@@ -30,7 +30,7 @@ class duplicity::debian {
   }
 
   file {'/usr/local/duplicity/duplicity-backups.sh':
-    ensure => present,
+    ensure => file,
     owner  => 'root',
     group  => 'root',
     mode   => '0750',
