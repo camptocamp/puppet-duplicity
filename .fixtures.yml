@@ -1,3 +1,5 @@
 fixtures:
+  forge_modules:
+    stdlib: 'puppetlabs-stdlib'
   symlinks:
     duplicity: "#{source_dir}"

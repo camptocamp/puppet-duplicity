@@ -29,12 +29,13 @@ class duplicity::debian {
     backup  => false,
   }
 
+  $module_path = get_module_path($module_name)
   file {'/usr/local/duplicity/duplicity-backups.sh':
-    ensure => file,
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0750',
-    source => 'puppet:///modules/duplicity/duplicity-backups.sh',
+    ensure  => file,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0750',
+    content => file("${module_path}/files/duplicity-backups.sh"),
   }
 
   cron {'duplicity backups':

@@ -8,6 +8,10 @@
   "project_page": "https://github.com/camptocamp/puppet-duplicity",
   "issues_url": "https://github.com/camptocamp/puppet-duplicity/issues",
   "dependencies": [
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">=3.2.0 <5.0.0"
+    }
   ],
   "requirements": [
     {
