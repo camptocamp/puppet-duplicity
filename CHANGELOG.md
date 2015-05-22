@@ -1,14 +1,18 @@
+## 2015-05-22 - Release 1.0.7
+
+- Add args to remove older than 30D command
+
 ## 2015-05-13 - Release 1.0.6
 
-Add puppet-lint-file_source_rights-check gem
+- Add puppet-lint-file_source_rights-check gem
 
 ## 2015-05-12 - Release 1.0.5
 
-Don't pin beaker
+- Don't pin beaker
 
 ## 2015-04-27 - Release 1.0.4
 
-Add nodeset ubuntu-12.04-x86_64-openstack
+- Add nodeset ubuntu-12.04-x86_64-openstack
 
 ## 2015-04-15 - Release 1.0.3
 
