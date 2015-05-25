@@ -1,3 +1,7 @@
+## 2015-05-25 - Release 1.0.8
+
+Don't allow failure on Puppet 4
+
 ## 2015-05-22 - Release 1.0.7
 
 - Add args to remove older than 30D command
