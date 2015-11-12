@@ -1,3 +1,7 @@
+## 2015-11-12 - Release 1.1.0
+
+Add class parameters to manage cron hour/minute
+
 ## 2015-08-21 - Release 1.0.13
 
 Use docker for acceptance tests
