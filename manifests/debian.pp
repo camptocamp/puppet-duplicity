@@ -1,5 +1,8 @@
 # See README.md for details.
-class duplicity::debian {
+class duplicity::debian (
+  $cron_hour   = fqdn_rand(6),
+  $cron_minute = fqdn_rand(60),
+) {
 
   package {'duplicity':
     ensure => present,
@@ -40,8 +43,8 @@ class duplicity::debian {
 
   cron {'duplicity backups':
     ensure  => present,
-    minute  => fqdn_rand(60),
-    hour    => fqdn_rand(6),
+    minute  => $cron_minute,
+    hour    => $cron_hour,
     command => '/usr/local/duplicity/duplicity-backups.sh',
   }
 }
