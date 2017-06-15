@@ -1,3 +1,8 @@
+## 2017-06-15 - Release 1.1.2
+
+- Lower priority of duplicity process with nice
+- Add volsize parameter, defaults o 200M
+
 ## 2015-11-12 - Release 1.1.0
 
 Add class parameters to manage cron hour/minute
