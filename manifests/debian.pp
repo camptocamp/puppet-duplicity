@@ -45,6 +45,6 @@ class duplicity::debian (
     ensure  => present,
     minute  => $cron_minute,
     hour    => $cron_hour,
-    command => '/usr/local/duplicity/duplicity-backups.sh',
+    command => 'nice /usr/local/duplicity/duplicity-backups.sh',
   }
 }
