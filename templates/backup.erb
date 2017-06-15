@@ -8,7 +8,7 @@ export <%= i %>
 <% end -%>
 
 duplicity --full-if-older-than <%= @full %> --name="<%= @name %>" \
-  --verbosity 0 <%= @args %> --archive-dir <%= @archive_dir %> \
+  --verbosity 0 <%= @args %> --archive-dir <%= @archive_dir %> --volsize <%= @volsize %> \
   --include-globbing-filelist /usr/local/duplicity/<%= @name %>.include \
   --exclude-globbing-filelist /usr/local/duplicity/<%= @name %>.exclude \
   <%= @source %> <%= @destination %> > <%= scope.lookupvar("duplicity::logdir") %>/<%= @name %>-$(date +%F).log 2>&1

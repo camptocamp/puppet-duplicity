@@ -10,6 +10,7 @@ define duplicity::backup(
   $full        = '15D',
   $archive_dir = '/root/.cache/duplicity',
   $env_var     = [],
+  $volsize     = '200',
   $args        = '--no-encryption') {
 
   file {"/usr/local/duplicity/${name}.sh":
