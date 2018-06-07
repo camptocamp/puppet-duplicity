@@ -1,8 +1,8 @@
 # See README.md for details.
-class duplicity::debian (
+class duplicity::redhat (
   $cron_hour    = fqdn_rand(6),
   $cron_minute  = fqdn_rand(60),
-  $logdir_group = 'adm',
+  $logdir_group = 'root',
 ) {
   class { '::duplicity::common':
     cron_hour    => $cron_hour,
@@ -10,3 +10,4 @@ class duplicity::debian (
     logdir_group => $logdir_group,
   }
 }
+
