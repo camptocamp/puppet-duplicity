@@ -1,3 +1,6 @@
+## 2017-06-15 - Release 1.2.0
+Add RHEL Support (if EPEL repositories are already enabled)
+
 ## 2017-06-15 - Release 1.1.2
 
 - Lower priority of duplicity process with nice
