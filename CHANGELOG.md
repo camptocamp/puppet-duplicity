@@ -1,4 +1,5 @@
-## 2017-06-15 - Release 1.2.0
+## 2018-06-08 - Release 1.2.0
+
 Add RHEL Support (if EPEL repositories are already enabled)
 
 ## 2017-06-15 - Release 1.1.2
