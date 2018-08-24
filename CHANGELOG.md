@@ -1,3 +1,7 @@
+## 2018-08-24 - Release 1.2.1
+
+Add verbosity parameter (default same as previously hardcoded value)
+
 ## 2018-06-08 - Release 1.2.0
 
 Add RHEL Support (if EPEL repositories are already enabled)
